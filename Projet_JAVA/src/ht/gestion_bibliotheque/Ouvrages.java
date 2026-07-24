@@ -121,7 +121,10 @@ public class Ouvrages {
         setTitre(nom);
         System.out.println("Liste des catégories :");
         for (int i = 0; i < TestBibliotheque.cat.length; i++) {
-            TestBibliotheque.cat[i].lister();
+            if (TestBibliotheque.cat[i] != null) {
+                System.out.println("Code: " + TestBibliotheque.cat[i].getCode() + " - " +
+                        TestBibliotheque.cat[i].getDescription());
+            }
         }
         do {
             System.out.print("Rentrez le code de la catégorie: ");
@@ -134,7 +137,7 @@ public class Ouvrages {
             sc.nextLine();
             boolean existe = false;
             for (int i =0;i<TestBibliotheque.cat.length;i++){
-                if (TestBibliotheque.cat[i].getCode()==cat){
+                if (TestBibliotheque.cat[i] != null &&TestBibliotheque.cat[i].getCode()==cat){
                     existe = true;
                     break;
                 }
@@ -148,7 +151,10 @@ public class Ouvrages {
         }while (true);
         System.out.println("Liste des rayons :");
         for (int i = 0; i < TestBibliotheque.ray.length; i++) {
-            TestBibliotheque.ray[i].afficher();
+            if (TestBibliotheque.ray[i] != null) {
+                System.out.println("ID: " + TestBibliotheque.ray[i].getId() + " - " +
+                        TestBibliotheque.ray[i].getNomRayon());
+            }
         }
         do {
             System.out.print("Entrez l'id du rayon : ");
@@ -163,7 +169,7 @@ public class Ouvrages {
             boolean existe = false;
 
             for (int i = 0; i < TestBibliotheque.ray.length; i++) {
-                if (TestBibliotheque.ray[i].getId() == ray) {
+                if (TestBibliotheque.ray[i] != null &&TestBibliotheque.ray[i].getId() == ray) {
                     existe = true;
                     break;
                 }

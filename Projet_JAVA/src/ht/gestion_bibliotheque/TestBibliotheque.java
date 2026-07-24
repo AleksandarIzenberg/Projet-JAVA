@@ -6,9 +6,9 @@ public class TestBibliotheque {
     static Rayons[] ray = null;
     static Ouvrages[] ouv = null;
     static Categories[] cat = null;
-    static Etudiant[] etudiant = null;       // NOUVEAU
-    static Bibliothecaire[] bib = null;       // NOUVEAU
-    static Emprunt[] emp = null;              // NOUVEAU
+    static Etudiant[] etudiant = null;
+    static Bibliothecaire[] bib = null;
+    static Emprunt[] emp = null;
 
     public static void main(String[] args) {
         int choix;
@@ -18,9 +18,9 @@ public class TestBibliotheque {
             System.out.println("1- Gestion des rayons");
             System.out.println("2- Gestion des catégories");
             System.out.println("3- Gestion des ouvrages");
-            System.out.println("4- Gestion des étudiants");      // NOUVEAU
-            System.out.println("5- Gestion des bibliothécaires"); // NOUVEAU
-            System.out.println("6- Gestion des emprunts");        // NOUVEAU
+            System.out.println("4- Gestion des étudiants");
+            System.out.println("5- Gestion des bibliothécaires");
+            System.out.println("6- Gestion des emprunts");
             System.out.println("0- Quitter");
             System.out.print("Votre choix: ");
             choix = sc.nextInt();
@@ -37,13 +37,13 @@ public class TestBibliotheque {
                     menuOuvrage();
                     break;
                 case 4:
-                    menuEtudiant();      // NOUVEAU
+                    menuEtudiant();
                     break;
                 case 5:
-                    menuBibliothecaire(); // NOUVEAU
+                    menuBibliothecaire();
                     break;
                 case 6:
-                    menuEmprunt();        // NOUVEAU
+                    menuEmprunt();
                     break;
                 case 0:
                     System.out.println("Au revoir !");
@@ -52,10 +52,9 @@ public class TestBibliotheque {
                 default:
                     System.out.println("Choix invalide !");
             }
-        } while (choix != 0);
+        } while (choix != 6);
     }
 
-    // ==================== MENU RAYONS (INCHANGÉ) ====================
     public static void menuRayon() {
         Scanner sc = new Scanner(System.in);
         int choix;
@@ -156,7 +155,6 @@ public class TestBibliotheque {
         } while (choix != 5);
     }
 
-    // ==================== MENU CATEGORIES (INCHANGÉ) ====================
     public static void menuCategorie() {
         Scanner sc = new Scanner(System.in);
         int choix;
@@ -302,7 +300,6 @@ public class TestBibliotheque {
         } while (choix != 5);
     }
 
-    // ==================== MENU OUVRAGES (INCHANGÉ) ====================
     public static void menuOuvrage() {
         Scanner sc = new Scanner(System.in);
         int choix;
@@ -406,130 +403,134 @@ public class TestBibliotheque {
                     } else {
                         System.out.print("Rentrez l'ISBN de l'ouvrage à modifier: ");
                         String id = sc.nextLine();
-                        do {
-                            System.out.println("1. Modifier l'ISBN");
-                            System.out.println("2. Modifier le titre");
-                            System.out.println("3. Modifier la catégorie");
-                            System.out.println("4. Modifier le rayon");
-                            System.out.println("5. Modifier le nombre d'exemplaire");
-                            System.out.println("6. Modifier la disponibilité");
-                            System.out.println("7. Retour");
-                            System.out.print("Votre choix: ");
-                            ch = sc.nextInt();
-                            sc.nextLine();
-                            switch (ch) {
-                                case 1:
-                                    boolean trouve = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            String isbn;
+                        boolean trouve = false;
+                        for (int i = 0; i < ouv.length; i++) {
+                            if (ouv[i] != null && ouv[i].getISBN().equals(id)) {
+                                System.out.println("1. Modifier l'ISBN");
+                                System.out.println("2. Modifier le titre");
+                                System.out.println("3. Modifier la catégorie");
+                                System.out.println("4. Modifier le rayon");
+                                System.out.println("5. Modifier le nombre d'exemplaire");
+                                System.out.println("6. Modifier la disponibilité");
+                                System.out.println("7. Retour");
+                                System.out.print("Votre choix: ");
+                                ch = sc.nextInt();
+                                sc.nextLine();
+                                switch (ch) {
+                                    case 1:
+                                        String isbn;
+                                        do {
                                             System.out.print("Rentrez le nouveau ISBN: ");
                                             isbn = sc.nextLine();
-                                            ouv[i].setISBN(isbn);
-                                            trouve = true;
-                                            System.out.println("ISBN modifié avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!trouve) {
-                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 2:
-                                    boolean trouv = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            String des;
+                                        } while (!ouv[i].setISBN(isbn));
+                                        ouv[i].setISBN(isbn);
+                                        System.out.println("ISBN modifié avec succès");
+                                        break;
+                                    case 2:
+                                        String des;
+                                        do {
                                             System.out.print("Rentrez le nouveau titre: ");
                                             des = sc.nextLine();
-                                            ouv[i].setTitre(des);
-                                            trouv = true;
-                                            System.out.println("Titre modifié avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!trouv) {
-                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 3:
-                                    boolean trou = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            int cat;
-                                            System.out.print("Rentrez la nouvelle catégorie: ");
+                                        } while (!ouv[i].setTitre(des));
+                                        ouv[i].setTitre(des);
+                                        System.out.println("Titre modifié avec succès");
+                                        break;
+                                    case 3:
+                                        int cat;
+                                        do {
+                                            System.out.print("Rentrez le code de la nouvelle catégorie: ");
+
+                                            while (!sc.hasNextInt()) {
+                                                System.out.println("Veuillez entrer un nombre.");
+                                                sc.next();
+                                                System.out.print("Rentrez le code de la nouvelle catégorie: ");
+                                            }
+
                                             cat = sc.nextInt();
                                             sc.nextLine();
-                                            ouv[i].setCategorie(cat);
-                                            trou = true;
-                                            System.out.println("Catégorie modifiée avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!trou) {
-                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 4:
-                                    boolean tro = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            int ra;
-                                            System.out.print("Rentrez le nouveau rayon: ");
+
+                                            boolean existe = false;
+                                            for (int j = 0; j < TestBibliotheque.cat.length; j++) {
+                                                if (TestBibliotheque.cat[j] != null && TestBibliotheque.cat[j].getCode() == cat) {
+                                                    existe = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (existe) {
+                                                ouv[i].setCategorie(cat);
+                                                System.out.println("Catégorie modifiée avec succès.");
+                                                break;
+                                            } else {
+                                                System.out.println("Cette catégorie n'existe pas.");
+                                            }
+
+                                        } while (true);
+                                        break;
+
+                                    case 4:
+                                        int ra;
+                                        do {
+                                            System.out.print("Rentrez le code du nouveau rayon: ");
+
+                                            while (!sc.hasNextInt()) {
+                                                System.out.println("Veuillez entrer un nombre.");
+                                                sc.next();
+                                                System.out.print("Rentrez le code du nouveau rayon: ");
+                                            }
                                             ra = sc.nextInt();
                                             sc.nextLine();
-                                            ouv[i].setIdRayon(ra);
-                                            tro = true;
-                                            System.out.println("Rayon modifié avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!tro) {
-                                        System.out.print("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 5:
-                                    boolean tr = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            int nb;
+                                            boolean existe = false;
+                                            for (int j = 0; j < TestBibliotheque.ray.length; j++) {
+                                                if (TestBibliotheque.ray[j] != null && TestBibliotheque.ray[j].getId() == ra) {
+                                                    existe = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (existe) {
+                                                ouv[i].setIdRayon(ra);
+                                                System.out.println("Rayon modifié avec succès.");
+                                                break;
+                                            } else {
+                                                System.out.println("Ce rayon n'existe pas.");
+                                            }
+
+                                        } while (true);
+                                        break;
+                                    case 5:
+                                        int nb;
+                                        do {
                                             System.out.print("Rentrez le nouveau nombre d'exemplaire: ");
                                             nb = sc.nextInt();
                                             sc.nextLine();
-                                            ouv[i].setNbreExemplaire(nb);
-                                            tr = true;
-                                            System.out.println("Nombre d'exemplaire modifié avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!tr) {
-                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 6:
-                                    boolean t = false;
-                                    for (int i = 0; i < ouv.length; i++) {
-                                        if (ouv[i].getISBN().equals(id)) {
-                                            String dis;
+                                        } while (!ouv[i].setNbreExemplaire(nb));
+                                        ouv[i].setNbreExemplaire(nb);
+                                        System.out.println("Nombre d'exemplaire modifié avec succès");
+                                        break;
+
+                                    case 6:
+                                        String dis;
+                                        do {
                                             System.out.print("Ce livre est-il disponible? (y/n): ");
                                             dis = sc.nextLine();
-                                            ouv[i].setDisponible(dis);
-                                            t = true;
-                                            System.out.println("Disponibilité modifié avec succès");
-                                            break;
-                                        }
-                                    }
-                                    if (!t) {
-                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
-                                    }
-                                    break;
-                                case 7:
-                                    break;
-                                default:
-                                    System.out.println("Choix invalide");
+                                        } while ( !ouv[i].setDisponible(dis));
+                                        ouv[i].setDisponible(dis);
+                                        System.out.println("Disponibilité modifié avec succès");
+                                        break;
+
+                                    case 7:
+                                        break;
+                                    default:
+                                        System.out.println("Choix invalide");
+                                }
+                                trouve = true;
+                                break;
                             }
-                        } while (ch != 7);
-                    }
+                        }
+                        if (!trouve) {
+                            System.out.println("Aucun étudiant trouvé avec l'ID : " + id);
+                        }
+
+                        }
                     break;
                 case 7:
                     System.out.println("Retour au menu principal");
@@ -544,7 +545,6 @@ public class TestBibliotheque {
         } while (choix != 7);
     }
 
-    // ==================== NOUVEAU : MENU ÉTUDIANTS ====================
     public static void menuEtudiant() {
         Scanner sc = new Scanner(System.in);
         int choix;

@@ -331,7 +331,6 @@ public class TestBibliotheque {
             System.out.print("Choix : ");
             choix = lireEntier(sc, 0, 7);
             sc.nextLine();
-
             switch (choix) {
                 case 1:
                     System.out.print("Combien d'ouvrages voulez-vous ajouter ? ");
@@ -342,11 +341,12 @@ public class TestBibliotheque {
                     for (int i = 0; i < ancienTaille; i++) {
                         nouveauTableau[i] = ouv[i];
                     }
+                    ouv = nouveauTableau;
                     for (int i = ancienTaille; i < ancienTaille + n; i++) {
                         nouveauTableau[i] = new Ouvrages();
                         nouveauTableau[i].ajouter();
                     }
-                    ouv = nouveauTableau;
+
                     break;
                 case 2:
                     if (ouv == null || ouv.length == 0) {

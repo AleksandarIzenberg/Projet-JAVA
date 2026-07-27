@@ -38,9 +38,9 @@ public class Ouvrages {
         if (titre.trim().isEmpty()) {
             System.out.println("Veuillez remplir ce champ");
             return false;
-        } else if (!titre.matches("[a-zA-ZÀ-ÿ -]+")) {
-            System.out.println("Ne mettez pas de chiffre dans ce champ");
-            return false;
+//        } else if (!titre.matches("[a-zA-ZÀ-ÿ -]+")) {
+//            System.out.println("Ne mettez pas de chiffre dans ce champ");
+//            return false;
         } else {
             this.titre = titre;
             return true;
@@ -88,7 +88,8 @@ public class Ouvrages {
         } else if (!disponible.matches("[a-zA-ZÀ-ÿ -]+")) {
             System.out.println("Ne mettez pas de chiffre dans ce champ");
             return false;
-        } else if (!disponible.matches("y") && !disponible.matches("n")) {
+        } else if (!disponible.matches("y") && !disponible.matches("n") && !disponible.matches("Y") &&
+                !disponible.matches("N")) {
             System.out.println("Veuillez mettre y ou n");
             return  false;
         } else {
@@ -96,8 +97,22 @@ public class Ouvrages {
             return true;
         }
     }
+    public static boolean isbnExiste(String isbn) {
+        if (TestBibliotheque.ouv == null) {
+            return false;
+        }
+
+        for (Ouvrages o : TestBibliotheque.ouv) {
+            if (o != null && o.getISBN() != null && isbn.equals(o.getISBN())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public void ajouter(){
+        System.out.println("\n--- ENREGISTREMENT D'UN OUVRAGE ---");
         String isbn,nom,disp;
         int nb,ray,cat;
         Scanner sc = new Scanner(System.in);
@@ -112,8 +127,12 @@ public class Ouvrages {
         do {
             System.out.print("Rentrez l'ISBN du livre (10 chiffres): ");
             isbn = sc.nextLine();
-        }while (!setISBN(isbn)) ;
-        setISBN(isbn);
+
+            if (isbnExiste(isbn)) {
+                System.out.println("Cet ISBN existe déjà.");
+            }
+
+        } while (isbnExiste(isbn) || !setISBN(isbn));
         do {
             System.out.print("Rentrez le titre: ");
             nom = sc.nextLine();
@@ -123,7 +142,7 @@ public class Ouvrages {
         for (int i = 0; i < TestBibliotheque.cat.length; i++) {
             if (TestBibliotheque.cat[i] != null) {
                 System.out.println("Code: " + TestBibliotheque.cat[i].getCode() + " - " +
-                        TestBibliotheque.cat[i].getDescription());
+                        TestBibliotheque.cat[i].getNom());
             }
         }
         do {

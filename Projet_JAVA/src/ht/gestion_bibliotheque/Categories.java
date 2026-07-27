@@ -41,15 +41,16 @@ public class Categories {
         if (description.trim().isEmpty()) {
             System.out.println("Veuillez remplir ce champ");
             return false;
-        } else if (!description.matches("[a-zA-ZÀ-ÿ -]+")) {
-            System.out.println("Ne mettez pas de chiffre dans ce champ");
-            return false;
+//        } else if (!description.matches("[a-zA-ZÀ-ÿ -]+")) {
+//            System.out.println("Ne mettez pas de chiffre dans ce champ");
+//            return false;
         } else {
             this.description = description;
             return true;
         }
     }
     public void ajouter(){
+        System.out.println("\n--- ENREGISTREMENT D'UNE CATÉGORIE ---");
         String nomCat,desc;
         Scanner sc = new Scanner(System.in);
         do {

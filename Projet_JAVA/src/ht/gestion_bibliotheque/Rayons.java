@@ -33,6 +33,7 @@ public class Rayons {
         }
     }
     public void enregister(){
+        System.out.println("\n--- ENREGISTREMENT D'UN RAYON ---");
         String nom;
         Scanner sc = new Scanner(System.in);
         do {

@@ -102,9 +102,9 @@ public class Etudiant {
         if (adresse.trim().isEmpty()) {
             System.out.println("Veuillez remplir ce champ");
             return false;
-        } else if (!adresse.matches("[a-zA-ZÀ-ÿ\\s'\\-]+")) {
-            System.out.println("L'adresse ne doit contenir que des lettres, espaces, tirets ou apostrophes");
-            return false;
+//        } else if (!adresse.matches("[a-zA-ZÀ-ÿ\\s'\\-]+")) {
+//            System.out.println("L'adresse ne doit contenir que des lettres, espaces, tirets ou apostrophes");
+//            return false;
         } else {
             this.adresse = adresse;
             return true;
@@ -142,7 +142,7 @@ public class Etudiant {
         setTel(tel);
 
         do {
-            System.out.print("Rentrez l'adresse de l'étudiant (lettres, espaces, tirets, apostrophes): ");
+            System.out.print("Rentrez l'adresse de l'étudiant : ");
             adresse = sc.nextLine();
         } while (!setAdresse(adresse));
         setAdresse(adresse);

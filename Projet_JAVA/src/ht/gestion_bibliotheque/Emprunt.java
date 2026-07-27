@@ -2,6 +2,7 @@ package ht.gestion_bibliotheque;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
@@ -49,12 +50,11 @@ public class Emprunt {
         LocalDate aujourdhui = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         dateEmprunt = aujourdhui.format(formatter);
-        dateRetour = aujourdhui.plusDays(7).format(formatter);
     }
 
     public boolean setIdEtudiant(int idEtudiant) {
         if (TestBibliotheque.etudiant == null || TestBibliotheque.etudiant.length == 0) {
-            System.out.println("Aucun étudiant enregistré");
+            System.out.println("Aucun etudiant enregistre");
             return false;
         }
         boolean existe = false;
@@ -65,7 +65,7 @@ public class Emprunt {
             }
         }
         if (!existe) {
-            System.out.println("Cet étudiant n'existe pas");
+            System.out.println("Cet etudiant n'existe pas");
             return false;
         }
         this.idEtudiant = idEtudiant;
@@ -78,7 +78,7 @@ public class Emprunt {
             return false;
         }
         if (TestBibliotheque.ouv == null || TestBibliotheque.ouv.length == 0) {
-            System.out.println("Aucun ouvrage enregistré");
+            System.out.println("Aucun ouvrage enregistre");
             return false;
         }
         boolean existe = false;
@@ -98,7 +98,7 @@ public class Emprunt {
 
     public boolean setIdBibliothecaire(int idBibliothecaire) {
         if (TestBibliotheque.bib == null || TestBibliotheque.bib.length == 0) {
-            System.out.println("Aucun bibliothécaire enregistré");
+            System.out.println("Aucun bibliothecaire enregistre");
             return false;
         }
         boolean existe = false;
@@ -109,11 +109,35 @@ public class Emprunt {
             }
         }
         if (!existe) {
-            System.out.println("Ce bibliothécaire n'existe pas");
+            System.out.println("Ce bibliothecaire n'existe pas");
             return false;
         }
         this.idBibliothecaire = idBibliothecaire;
         return true;
+    }
+
+    public boolean setDateRetour(String dateRetour) {
+        if (dateRetour.trim().isEmpty()) {
+            System.out.println("Veuillez remplir ce champ");
+            return false;
+        }
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            LocalDate dateRet = LocalDate.parse(dateRetour, formatter);
+            LocalDate dateEmp = LocalDate.parse(dateEmprunt, formatter);
+            
+            if (dateRet.isBefore(dateEmp) || dateRet.isEqual(dateEmp)) {
+                System.out.println("La date de retour doit etre posterieure a la date d'emprunt (" + dateEmprunt + ")");
+                return false;
+            }
+            
+            this.dateRetour = dateRetour;
+            return true;
+        } catch (DateTimeParseException e) {
+            System.out.println("Format de date invalide. Utilisez le format jj/mm/aaaa");
+            return false;
+        }
     }
 
     public void setDateEffective(String dateEffective) {
@@ -122,23 +146,23 @@ public class Emprunt {
 
     public void effectuerEmprunt() {
         int idEtud, idBib;
-        String isbn;
+        String isbn, dateRet;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n--- EFFECTUER UN EMPRUNT ---");
 
         if (TestBibliotheque.etudiant == null || TestBibliotheque.etudiant.length == 0) {
-            System.out.println("Aucun étudiant enregistré. Veuillez d'abord enregistrer un étudiant.");
+            System.out.println("Aucun etudiant enregistre. Veuillez d'abord enregistrer un etudiant.");
             return;
         }
 
         if (TestBibliotheque.bib == null || TestBibliotheque.bib.length == 0) {
-            System.out.println("Aucun bibliothécaire enregistré. Veuillez d'abord enregistrer un bibliothécaire.");
+            System.out.println("Aucun bibliothecaire enregistre. Veuillez d'abord enregistrer un bibliothecaire.");
             return;
         }
 
         if (TestBibliotheque.ouv == null || TestBibliotheque.ouv.length == 0) {
-            System.out.println("Aucun ouvrage enregistré. Veuillez d'abord enregistrer un ouvrage.");
+            System.out.println("Aucun ouvrage enregistre. Veuillez d'abord enregistrer un ouvrage.");
             return;
         }
 
@@ -154,7 +178,7 @@ public class Emprunt {
             return;
         }
 
-        System.out.println("\nLISTE DES ÉTUDIANTS :");
+        System.out.println("\nLISTE DES ETUDIANTS :");
         for (int i = 0; i < TestBibliotheque.etudiant.length; i++) {
             if (TestBibliotheque.etudiant[i] != null) {
                 System.out.println("ID: " + TestBibliotheque.etudiant[i].getId() + " - " + 
@@ -164,11 +188,11 @@ public class Emprunt {
         }
 
         do {
-            System.out.print("Rentrez l'ID de l'étudiant: ");
+            System.out.print("Rentrez l'ID de l'etudiant: ");
             while (!sc.hasNextInt()) {
                 System.out.println("Veuillez entrer un nombre");
                 sc.next();
-                System.out.print("Rentrez l'ID de l'étudiant: ");
+                System.out.print("Rentrez l'ID de l'etudiant: ");
             }
             idEtud = sc.nextInt();
             sc.nextLine();
@@ -190,7 +214,14 @@ public class Emprunt {
         } while (!setIsbn(isbn));
         setIsbn(isbn);
 
-        System.out.println("\nLISTE DES BIBLIOTHÉCAIRES :");
+        System.out.println("\nDate d'emprunt: " + dateEmprunt);
+        do {
+            System.out.print("Rentrez la date de retour prevue (jj/mm/aaaa): ");
+            dateRet = sc.nextLine();
+        } while (!setDateRetour(dateRet));
+        setDateRetour(dateRet);
+
+        System.out.println("\nLISTE DES BIBLIOTHECAIRES :");
         for (int i = 0; i < TestBibliotheque.bib.length; i++) {
             if (TestBibliotheque.bib[i] != null) {
                 System.out.println("ID: " + TestBibliotheque.bib[i].getId() + " - " + 
@@ -200,11 +231,11 @@ public class Emprunt {
         }
 
         do {
-            System.out.print("Rentrez l'ID du bibliothécaire: ");
+            System.out.print("Rentrez l'ID du bibliothecaire: ");
             while (!sc.hasNextInt()) {
                 System.out.println("Veuillez entrer un nombre");
                 sc.next();
-                System.out.print("Rentrez l'ID du bibliothécaire: ");
+                System.out.print("Rentrez l'ID du bibliothecaire: ");
             }
             idBib = sc.nextInt();
             sc.nextLine();
@@ -222,19 +253,25 @@ public class Emprunt {
             }
         }
 
-        System.out.println("Emprunt effectué avec succès !");
+        System.out.println("\nEmprunt effectue avec succes !");
+        System.out.println("Numero d'emprunt: " + numEmp);
         System.out.println("Date d'emprunt: " + dateEmprunt);
-        System.out.println("Date de retour prévue: " + dateRetour);
+        System.out.println("Date de retour prevue: " + dateRetour);
     }
 
     public void retournerEmprunt(int numEmp) {
         if (TestBibliotheque.emp == null || TestBibliotheque.emp.length == 0) {
-            System.out.println("Aucun emprunt enregistré.");
+            System.out.println("Aucun emprunt enregistre.");
             return;
         }
 
         for (int i = 0; i < TestBibliotheque.emp.length; i++) {
             if (TestBibliotheque.emp[i] != null && TestBibliotheque.emp[i].getNumEmp() == numEmp) {
+                if (TestBibliotheque.emp[i].getDateEffective() != null) {
+                    System.out.println("Cet emprunt a deja ete retourne.");
+                    return;
+                }
+
                 LocalDate aujourdhui = LocalDate.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 TestBibliotheque.emp[i].setDateEffective(aujourdhui.format(formatter));
@@ -249,21 +286,21 @@ public class Emprunt {
                     }
                 }
 
-                System.out.println("Retour effectué avec succès pour l'emprunt n°" + numEmp);
+                System.out.println("Retour effectue avec succes pour l'emprunt n°" + numEmp);
                 System.out.println("Date effective de retour: " + TestBibliotheque.emp[i].getDateEffective());
                 return;
             }
         }
-        System.out.println("Emprunt n°" + numEmp + " non trouvé.");
+        System.out.println("Emprunt n°" + numEmp + " non trouve.");
     }
 
     public void afficher() {
         System.out.println("\n--- EMPRUNT N° " + numEmp + " ---");
-        System.out.println("ID Étudiant: " + idEtudiant);
+        System.out.println("ID Etudiant: " + idEtudiant);
         System.out.println("ISBN Livre: " + isbn);
-        System.out.println("ID Bibliothécaire: " + idBibliothecaire);
+        System.out.println("ID Bibliothecaire: " + idBibliothecaire);
         System.out.println("Date d'emprunt: " + dateEmprunt);
-        System.out.println("Date de retour prévue: " + dateRetour);
+        System.out.println("Date de retour prevue: " + dateRetour);
         if (dateEffective != null) {
             System.out.println("Date effective de retour: " + dateEffective);
             try {
@@ -272,12 +309,14 @@ public class Emprunt {
                 LocalDate effective = LocalDate.parse(dateEffective, formatter);
                 if (effective.isAfter(retour)) {
                     long joursRetard = ChronoUnit.DAYS.between(retour, effective);
-                    System.out.println("En retard de " + joursRetard + " jour(s) !");
+                    System.out.println("EN RETARD de " + joursRetard + " jour(s) !");
+                } else {
+                    System.out.println("Retour dans les delais");
                 }
             } catch (Exception e) {
             }
         } else {
-            System.out.println("Statut: Non retourné");
+            System.out.println("Statut: Non retourne");
         }
     }
 }

@@ -16,9 +16,9 @@ public class TestBibliotheque {
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1- Gestion des rayons");
-            System.out.println("2- Gestion des categories");
+            System.out.println("2- Gestion des catégories");
             System.out.println("3- Gestion des ouvrages");
-            System.out.println("4- Gestion des etudiants");
+            System.out.println("4- Gestion des étudiants");
             System.out.println("5- Gestion des bibliothecaires");
             System.out.println("6- Gestion des emprunts");
             System.out.println("0- Quitter");
@@ -46,11 +46,11 @@ public class TestBibliotheque {
                     menuEmprunt();
                     break;
                 case 0:
-                    System.out.println("Au revoir !");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Choix invalide !");
+                    System.out.println("Choix invalide!");
             }
         } while (choix != 0);
     }
@@ -89,7 +89,7 @@ public class TestBibliotheque {
 
             switch (choix) {
                 case 1:
-                    System.out.print("Combien de rayons voulez-vous enregistrer ? ");
+                    System.out.print("Combien de rayons voulez-vous enregistrer? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (ray == null) ? 0 : ray.length;
@@ -105,7 +105,7 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (ray == null || ray.length == 0) {
-                        System.out.println("Aucun rayon enregistre");
+                        System.out.println("Aucun rayon enregistré");
                     } else {
                         System.out.println("\n LISTE DES RAYONS");
                         for (int i = 0; i < ray.length; i++) {
@@ -116,7 +116,7 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     if (ray == null || ray.length == 0) {
-                        System.out.println("Aucun rayon enregistre");
+                        System.out.println("Aucun rayon enregistré");
                     } else {
                         System.out.print("Entrez l'id du rayon a rechercher : ");
                         int id = lireEntier(sc, 1, 9999);
@@ -124,22 +124,22 @@ public class TestBibliotheque {
                         boolean trouve = false;
                         for (int i = 0; i < ray.length; i++) {
                             if (ray[i].getId() == id) {
-                                System.out.println("\nRayon trouve :");
+                                System.out.println("\nRayon trouvé:");
                                 ray[i].afficher();
                                 trouve = true;
                                 break;
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Aucun rayon trouve avec l'Id: " + id);
+                            System.out.println("Aucun rayon trouvé avec l'Id: " + id);
                         }
                     }
                     break;
                 case 4:
                     if (ray == null || ray.length == 0) {
-                        System.out.println("Aucun rayon enregistre");
+                        System.out.println("Aucun rayon enregistré");
                     } else {
-                        System.out.print("Entrez l'id du rayon a modifier : ");
+                        System.out.print("Entrez l'id du rayon à modifier : ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
@@ -150,12 +150,12 @@ public class TestBibliotheque {
                                 nom = sc.nextLine();
                                 ray[i].setNomRayon(nom);
                                 trouve = true;
-                                System.out.println("Nom modifie avec succes");
+                                System.out.println("Nom modifié avec succes!");
                                 break;
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Aucun rayon trouve avec l'Id: " + id);
+                            System.out.println("Aucun rayon trouvé avec l'Id: " + id);
                         }
                     }
                     break;
@@ -163,7 +163,7 @@ public class TestBibliotheque {
                     System.out.println("Retour au menu principal");
                     break;
                 case 0:
-                    System.out.println("Au revoir");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
@@ -177,10 +177,10 @@ public class TestBibliotheque {
         int choix;
         do {
             System.out.println("\n===== GESTION DES CATEGORIES =====");
-            System.out.println("1. Ajouter une categorie");
-            System.out.println("2. Lister les categories");
-            System.out.println("3. Modifier une categorie");
-            System.out.println("4. Supprimer une categorie");
+            System.out.println("1. Ajouter une catégorie");
+            System.out.println("2. Lister les catégories");
+            System.out.println("3. Modifier une catégorie");
+            System.out.println("4. Supprimer une catégorie");
             System.out.println("5. Revenir au menu principal");
             System.out.println("0. Quitter");
             System.out.print("Choix : ");
@@ -189,7 +189,7 @@ public class TestBibliotheque {
 
             switch (choix) {
                 case 1:
-                    System.out.print("Combien de categories voulez-vous ajouter ? ");
+                    System.out.print("Combien de catégories voulez-vous ajouter? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (cat == null) ? 0 : cat.length;
@@ -205,12 +205,12 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (cat == null || cat.length == 0) {
-                        System.out.println("Aucune categorie enregistree");
+                        System.out.println("Aucune catégorie enregistrée");
                     } else {
                         System.out.println("\n LISTE DES CATEGORIES");
                         for (int i = 0; i < cat.length; i++) {
                             if (cat[i] != null) {
-                                System.out.println("\ncategorie " + (i + 1));
+                                System.out.println("\ncatégorie " + (i + 1));
                                 cat[i].lister();
                             }
                         }
@@ -219,9 +219,9 @@ public class TestBibliotheque {
                 case 3:
                     int ch;
                     if (cat == null || cat.length == 0) {
-                        System.out.println("Aucune categorie enregistree");
+                        System.out.println("Aucune catégorie enregistrée");
                     } else {
-                        System.out.print("Entrez le code de la categorie a modifier : ");
+                        System.out.print("Entrez le code de la catégorie à modifier : ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         do {
@@ -237,16 +237,16 @@ public class TestBibliotheque {
                                     for (int i = 0; i < cat.length; i++) {
                                         if (cat[i] != null && cat[i].getCode() == id) {
                                             String nom;
-                                            System.out.print("Entrez le nouveau nom de la categorie: ");
+                                            System.out.print("Entrez le nouveau nom de la catégorie: ");
                                             nom = sc.nextLine();
                                             cat[i].setNom(nom);
                                             trouve = true;
-                                            System.out.println("Nom modifie avec succes");
+                                            System.out.println("Nom modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!trouve) {
-                                        System.out.println("Aucune categorie trouvee avec le code : " + id);
+                                        System.out.println("Aucune catégorie trouvée avec le code : " + id);
                                     }
                                     break;
                                 case 2:
@@ -254,16 +254,16 @@ public class TestBibliotheque {
                                     for (int i = 0; i < cat.length; i++) {
                                         if (cat[i] != null && cat[i].getCode() == id) {
                                             String des;
-                                            System.out.print("Entrez la nouvelle description de la categorie: ");
+                                            System.out.print("Entrez la nouvelle description de la catégorie: ");
                                             des = sc.nextLine();
                                             cat[i].setDescription(des);
                                             trouv = true;
-                                            System.out.println("Description modifiee avec succes");
+                                            System.out.println("Description modifiée avec succes");
                                             break;
                                         }
                                     }
                                     if (!trouv) {
-                                        System.out.println("Aucune categorie trouvee avec le code : " + id);
+                                        System.out.println("Aucune catégorie trouvée avec le code : " + id);
                                     }
                                     break;
                                 case 3:
@@ -276,9 +276,9 @@ public class TestBibliotheque {
                     break;
                 case 4:
                     if (cat == null || cat.length == 0) {
-                        System.out.println("Aucune categorie enregistree");
+                        System.out.println("Aucune catégorie enregistrée");
                     } else {
-                        System.out.print("Entrez le code de la categorie a supprimer : ");
+                        System.out.print("Entrez le code de la catégorie à supprimer : ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
@@ -293,12 +293,12 @@ public class TestBibliotheque {
                                 }
                                 cat = nouveau;
                                 trouve = true;
-                                System.out.println("Categorie supprimee avec succes.");
+                                System.out.println("Catégorie supprimée avec succes.");
                                 break;
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Categorie introuvable.");
+                            System.out.println("Catégorie introuvable.");
                         }
                     }
                     break;
@@ -306,7 +306,7 @@ public class TestBibliotheque {
                     System.out.println("Retour au menu principal");
                     break;
                 case 0:
-                    System.out.println("Au revoir");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
@@ -324,7 +324,7 @@ public class TestBibliotheque {
             System.out.println("2. Lister les ouvrage");
             System.out.println("3. Lister les ouvrages d'un rayon");
             System.out.println("4. Lister les ouvrages disponibles");
-            System.out.println("5. Lister les ouvrages d'une categorie");
+            System.out.println("5. Lister les ouvrages d'une catégorie");
             System.out.println("6. Modifier les informations d'ouvrage");
             System.out.println("7. Retour au menu principal");
             System.out.println("0. Quitter");
@@ -333,7 +333,7 @@ public class TestBibliotheque {
             sc.nextLine();
             switch (choix) {
                 case 1:
-                    System.out.print("Combien d'ouvrages voulez-vous ajouter ? ");
+                    System.out.print("Combien d'ouvrages voulez-vous ajouter? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (ouv == null) ? 0 : ouv.length;
@@ -350,7 +350,7 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucun ouvrages enregistre");
+                        System.out.println("Aucun ouvrages enregistré");
                     } else {
                         System.out.println("\n LISTE DES OUVRAGES");
                         for (int i = 0; i < ouv.length; i++) {
@@ -360,9 +360,9 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucun ouvrage enregistre.");
+                        System.out.println("Aucun ouvrage enregistré.");
                     } else {
-                        System.out.print("Entrez l'id du rayon : ");
+                        System.out.print("Entrez l'id du rayon: ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
@@ -379,7 +379,7 @@ public class TestBibliotheque {
                     break;
                 case 4:
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucun ouvrage enregistre");
+                        System.out.println("Aucun ouvrage enregistré");
                     } else {
                         System.out.println("\n LISTE DES OUVRAGES DISPONIBLES");
                         boolean trouve = false;
@@ -396,9 +396,9 @@ public class TestBibliotheque {
                     break;
                 case 5:
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucun ouvrage enregistree");
+                        System.out.println("Aucun ouvrage enregistrée");
                     } else {
-                        System.out.print("Entrez le code de la categorie : ");
+                        System.out.print("Entrez le code de la catégorie : ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
@@ -409,24 +409,24 @@ public class TestBibliotheque {
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Aucun ouvrage dans cette categorie");
+                            System.out.println("Aucun ouvrage dans cette catégorie");
                         }
                     }
                     break;
                 case 6:
                     int ch;
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucune categorie enregistree");
+                        System.out.println("Aucune catégorie enregistrée");
                     } else {
                         System.out.print("Entrez l'ISBN de l'ouvrage a modifier: ");
                         String id = sc.nextLine();
                         do {
                             System.out.println("1. Modifier l'ISBN");
                             System.out.println("2. Modifier le titre");
-                            System.out.println("3. Modifier la categorie");
+                            System.out.println("3. Modifier la catégorie");
                             System.out.println("4. Modifier le rayon");
                             System.out.println("5. Modifier le nombre d'exemplaire");
-                            System.out.println("6. Modifier la disponibilite");
+                            System.out.println("6. Modifier la disponibilité");
                             System.out.println("7. Retour");
                             System.out.print("Votre choix: ");
                             ch = lireEntier(sc, 1, 7);
@@ -441,12 +441,12 @@ public class TestBibliotheque {
                                             isbn = sc.nextLine();
                                             ouv[i].setISBN(isbn);
                                             trouve = true;
-                                            System.out.println("ISBN modifie avec succes");
+                                            System.out.println("ISBN modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!trouve) {
-                                        System.out.println("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
                                     }
                                     break;
                                 case 2:
@@ -458,12 +458,12 @@ public class TestBibliotheque {
                                             des = sc.nextLine();
                                             ouv[i].setTitre(des);
                                             trouv = true;
-                                            System.out.println("Titre modifie avec succes");
+                                            System.out.println("Titre modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!trouv) {
-                                        System.out.println("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN : " + id);
                                     }
                                     break;
                                 case 3:
@@ -471,17 +471,17 @@ public class TestBibliotheque {
                                     for (int i = 0; i < ouv.length; i++) {
                                         if (ouv[i].getISBN().equals(id)) {
                                             int cat;
-                                            System.out.print("Entrez la nouvelle categorie: ");
+                                            System.out.print("Entrez la nouvelle catégorie: ");
                                             cat = lireEntier(sc, 1, 9999);
                                             sc.nextLine();
                                             ouv[i].setCategorie(cat);
                                             trou = true;
-                                            System.out.println("Categorie modifiee avec succes");
+                                            System.out.println("Catégorie modifiée avec succes");
                                             break;
                                         }
                                     }
                                     if (!trou) {
-                                        System.out.println("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN: " + id);
                                     }
                                     break;
                                 case 4:
@@ -494,12 +494,12 @@ public class TestBibliotheque {
                                             sc.nextLine();
                                             ouv[i].setIdRayon(ra);
                                             tro = true;
-                                            System.out.println("Rayon modifie avec succes");
+                                            System.out.println("Rayon modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!tro) {
-                                        System.out.print("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.print("Aucun ouvrage trouvé avec l'ISBN: " + id);
                                     }
                                     break;
                                 case 5:
@@ -512,12 +512,12 @@ public class TestBibliotheque {
                                             sc.nextLine();
                                             ouv[i].setNbreExemplaire(nb);
                                             tr = true;
-                                            System.out.println("Nombre d'exemplaire modifie avec succes");
+                                            System.out.println("Nombre d'exemplaire modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!tr) {
-                                        System.out.println("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN: " + id);
                                     }
                                     break;
                                 case 6:
@@ -529,12 +529,12 @@ public class TestBibliotheque {
                                             dis = sc.nextLine();
                                             ouv[i].setDisponible(dis);
                                             t = true;
-                                            System.out.println("Disponibilite modifie avec succes");
+                                            System.out.println("Disponibilite modifié avec succes");
                                             break;
                                         }
                                     }
                                     if (!t) {
-                                        System.out.println("Aucun ouvrage trouve avec l'ISBN : " + id);
+                                        System.out.println("Aucun ouvrage trouvé avec l'ISBN: " + id);
                                     }
                                     break;
                                 case 7:
@@ -549,7 +549,7 @@ public class TestBibliotheque {
                     System.out.println("Retour au menu principal");
                     break;
                 case 0:
-                    System.out.println("Au revoir");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
@@ -563,9 +563,9 @@ public class TestBibliotheque {
         int choix;
         do {
             System.out.println("\n===== GESTION DES ETUDIANTS =====");
-            System.out.println("1. Enregistrer un etudiant");
-            System.out.println("2. Lister les etudiants");
-            System.out.println("3. Modifier les informations d'un etudiant");
+            System.out.println("1. Enregistrer un étudiant");
+            System.out.println("2. Lister les étudiants");
+            System.out.println("3. Modifier les informations d'un étudiant");
             System.out.println("4. Revenir au menu principal");
             System.out.println("0. Quitter");
             System.out.print("Choix : ");
@@ -574,7 +574,7 @@ public class TestBibliotheque {
 
             switch (choix) {
                 case 1:
-                    System.out.print("Combien d'etudiants voulez-vous enregistrer ? ");
+                    System.out.print("Combien d'étudiants voulez-vous enregistrer? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (etudiant == null) ? 0 : etudiant.length;
@@ -590,7 +590,7 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (etudiant == null || etudiant.length == 0) {
-                        System.out.println("Aucun etudiant enregistre");
+                        System.out.println("Aucun étudiant enregistré");
                     } else {
                         System.out.println("\n=== LISTE DES ETUDIANTS ===");
                         for (int i = 0; i < etudiant.length; i++) {
@@ -603,19 +603,19 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     if (etudiant == null || etudiant.length == 0) {
-                        System.out.println("Aucun etudiant enregistre");
+                        System.out.println("Aucun étudiant enregistré");
                     } else {
-                        System.out.print("Entrez l'ID de l'etudiant a modifier : ");
+                        System.out.print("Entrez l'ID de l'étudiant à modifier: ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
                         for (int i = 0; i < etudiant.length; i++) {
                             if (etudiant[i] != null && etudiant[i].getId() == id) {
-                                System.out.println("\n--- Modification de l'etudiant ---");
+                                System.out.println("\n--- Modification de l'étudiant ---");
                                 System.out.println("1. Modifier le nom");
                                 System.out.println("2. Modifier le prenom");
                                 System.out.println("3. Modifier le sexe");
-                                System.out.println("4. Modifier le telephone");
+                                System.out.println("4. Modifier le téléphone");
                                 System.out.println("5. Modifier l'adresse");
                                 System.out.println("6. Retour");
                                 System.out.print("Votre choix: ");
@@ -629,16 +629,16 @@ public class TestBibliotheque {
                                             nom = sc.nextLine();
                                         } while (!etudiant[i].setNom(nom));
                                         etudiant[i].setNom(nom);
-                                        System.out.println("Nom modifie avec succes");
+                                        System.out.println("Nom modifié avec succes");
                                         break;
                                     case 2:
                                         String prenom;
                                         do {
-                                            System.out.print("Entrez le nouveau prenom: ");
+                                            System.out.print("Entrez le nouveau prénom: ");
                                             prenom = sc.nextLine();
                                         } while (!etudiant[i].setPrenom(prenom));
                                         etudiant[i].setPrenom(prenom);
-                                        System.out.println("Prenom modifie avec succes");
+                                        System.out.println("Prénom modifié avec succes");
                                         break;
                                     case 3:
                                         String sexe;
@@ -647,16 +647,16 @@ public class TestBibliotheque {
                                             sexe = sc.nextLine();
                                         } while (!etudiant[i].setSexe(sexe));
                                         etudiant[i].setSexe(sexe);
-                                        System.out.println("Sexe modifie avec succes");
+                                        System.out.println("Sexe modifié avec succes");
                                         break;
                                     case 4:
                                         String tel;
                                         do {
-                                            System.out.print("Entrez le nouveau telephone (8 chiffres): ");
+                                            System.out.print("Entrez le nouveau téléphone (8 chiffres): ");
                                             tel = sc.nextLine();
                                         } while (!etudiant[i].setTel(tel));
                                         etudiant[i].setTel(tel);
-                                        System.out.println("Telephone modifie avec succes");
+                                        System.out.println("Téléphone modifié avec succes");
                                         break;
                                     case 5:
                                         String adresse;
@@ -665,7 +665,7 @@ public class TestBibliotheque {
                                             adresse = sc.nextLine();
                                         } while (!etudiant[i].setAdresse(adresse));
                                         etudiant[i].setAdresse(adresse);
-                                        System.out.println("Adresse modifiee avec succes");
+                                        System.out.println("Adresse modifiée avec succes");
                                         break;
                                     case 6:
                                         System.out.println("Retour");
@@ -678,7 +678,7 @@ public class TestBibliotheque {
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Aucun etudiant trouve avec l'ID : " + id);
+                            System.out.println("Aucun étudiant trouvé avec l'ID : " + id);
                         }
                     }
                     break;
@@ -686,7 +686,7 @@ public class TestBibliotheque {
                     System.out.println("Retour au menu principal");
                     break;
                 case 0:
-                    System.out.println("Au revoir");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
@@ -711,7 +711,7 @@ public class TestBibliotheque {
 
             switch (choix) {
                 case 1:
-                    System.out.print("Combien de bibliothecaires voulez-vous enregistrer ? ");
+                    System.out.print("Combien de bibliothecaires voulez-vous enregistrer? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (bib == null) ? 0 : bib.length;
@@ -727,7 +727,7 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (bib == null || bib.length == 0) {
-                        System.out.println("Aucun bibliothecaire enregistre");
+                        System.out.println("Aucun bibliothecaire enregistré");
                     } else {
                         System.out.println("\n=== LISTE DES BIBLIOTHECAIRES ===");
                         for (int i = 0; i < bib.length; i++) {
@@ -740,9 +740,9 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     if (bib == null || bib.length == 0) {
-                        System.out.println("Aucun bibliothecaire enregistre");
+                        System.out.println("Aucun bibliothecaire enregistré");
                     } else {
-                        System.out.print("Entrez l'ID du bibliothecaire a modifier : ");
+                        System.out.print("Entrez l'ID du bibliothecaire a modifier: ");
                         int id = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean trouve = false;
@@ -750,7 +750,7 @@ public class TestBibliotheque {
                             if (bib[i] != null && bib[i].getId() == id) {
                                 System.out.println("\n--- Modification du bibliothecaire ---");
                                 System.out.println("1. Modifier le nom");
-                                System.out.println("2. Modifier le prenom");
+                                System.out.println("2. Modifier le prénom");
                                 System.out.println("3. Modifier le telephone");
                                 System.out.println("4. Modifier l'adresse");
                                 System.out.println("5. Modifier le salaire");
@@ -766,25 +766,25 @@ public class TestBibliotheque {
                                             nom = sc.nextLine();
                                         } while (!bib[i].setNom(nom));
                                         bib[i].setNom(nom);
-                                        System.out.println("Nom modifie avec succes");
+                                        System.out.println("Nom modifié avec succes");
                                         break;
                                     case 2:
                                         String prenom;
                                         do {
-                                            System.out.print("Entrez le nouveau prenom: ");
+                                            System.out.print("Entrez le nouveau prénom: ");
                                             prenom = sc.nextLine();
                                         } while (!bib[i].setPrenom(prenom));
                                         bib[i].setPrenom(prenom);
-                                        System.out.println("Prenom modifie avec succes");
+                                        System.out.println("Prénom modifie avec succes");
                                         break;
                                     case 3:
                                         String tel;
                                         do {
-                                            System.out.print("Entrez le nouveau telephone (8 chiffres): ");
+                                            System.out.print("Entrez le nouveau téléphone (8 chiffres): ");
                                             tel = sc.nextLine();
                                         } while (!bib[i].setTel(tel));
                                         bib[i].setTel(tel);
-                                        System.out.println("Telephone modifie avec succes");
+                                        System.out.println("Téléphone modifié avec succes");
                                         break;
                                     case 4:
                                         String adresse;
@@ -793,7 +793,7 @@ public class TestBibliotheque {
                                             adresse = sc.nextLine();
                                         } while (!bib[i].setAdresse(adresse));
                                         bib[i].setAdresse(adresse);
-                                        System.out.println("Adresse modifiee avec succes");
+                                        System.out.println("Adresse modifiée avec succes");
                                         break;
                                     case 5:
                                         double salaire;
@@ -808,7 +808,7 @@ public class TestBibliotheque {
                                             sc.nextLine();
                                         } while (!bib[i].setSalaire(salaire));
                                         bib[i].setSalaire(salaire);
-                                        System.out.println("Salaire modifie avec succes");
+                                        System.out.println("Salaire modifié avec succes");
                                         break;
                                     case 6:
                                         System.out.println("Retour");
@@ -821,7 +821,7 @@ public class TestBibliotheque {
                             }
                         }
                         if (!trouve) {
-                            System.out.println("Aucun bibliothecaire trouve avec l'ID : " + id);
+                            System.out.println("Aucun bibliothecaire trouvé avec l'ID: " + id);
                         }
                     }
                     break;
@@ -829,7 +829,7 @@ public class TestBibliotheque {
                     System.out.println("Retour au menu principal");
                     break;
                 case 0:
-                    System.out.println("Au revoir");
+                    System.out.println("Au revoir!");
                     System.exit(0);
                     break;
                 default:
@@ -856,15 +856,15 @@ public class TestBibliotheque {
             switch (choix) {
                 case 1:
                     if (etudiant == null || etudiant.length == 0) {
-                        System.out.println("Aucun etudiant enregistre. Veuillez d'abord enregistrer un etudiant.");
+                        System.out.println("Aucun étudiant enregistré. Veuillez d'abord enregistrer un étudiant.");
                         break;
                     }
                     if (bib == null || bib.length == 0) {
-                        System.out.println("Aucun bibliothecaire enregistre. Veuillez d'abord enregistrer un bibliothecaire.");
+                        System.out.println("Aucun bibliothecaire enregistré. Veuillez d'abord enregistrer un bibliothecaire.");
                         break;
                     }
                     if (ouv == null || ouv.length == 0) {
-                        System.out.println("Aucun ouvrage enregistre. Veuillez d'abord enregistrer un ouvrage.");
+                        System.out.println("Aucun ouvrage enregistré. Veuillez d'abord enregistrer un ouvrage.");
                         break;
                     }
                     boolean dispo = false;
@@ -879,7 +879,7 @@ public class TestBibliotheque {
                         break;
                     }
 
-                    System.out.print("Combien d'emprunts voulez-vous effectuer ? ");
+                    System.out.print("Combien d'emprunts voulez-vous effectuer? ");
                     int n = lireEntier(sc, 1, 100);
                     sc.nextLine();
                     int ancienTaille = (emp == null) ? 0 : emp.length;
@@ -895,7 +895,7 @@ public class TestBibliotheque {
                     break;
                 case 2:
                     if (emp == null || emp.length == 0) {
-                        System.out.println("Aucun emprunt enregistre");
+                        System.out.println("Aucun emprunt enregistré");
                     } else {
                         System.out.println("\n=== LISTE DES EMPRUNTS ===");
                         for (int i = 0; i < emp.length; i++) {
@@ -907,16 +907,16 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     if (emp == null || emp.length == 0) {
-                        System.out.println("Aucun emprunt enregistre");
+                        System.out.println("Aucun emprunt enregistré");
                     } else {
-                        System.out.print("Entrez le numero de l'emprunt a retourner : ");
+                        System.out.print("Entrez le numero de l'emprunt à retourner : ");
                         int num = lireEntier(sc, 1, 9999);
                         sc.nextLine();
                         boolean dejaRetourne = false;
                         for (int i = 0; i < emp.length; i++) {
                             if (emp[i] != null && emp[i].getNumEmp() == num) {
                                 if (emp[i].getDateEffective() != null) {
-                                    System.out.println("Cet emprunt a deja ete retourne.");
+                                    System.out.println("Cet emprunt a deja ete retourné.");
                                     dejaRetourne = true;
                                     break;
                                 }

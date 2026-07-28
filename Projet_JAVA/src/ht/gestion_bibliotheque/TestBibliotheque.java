@@ -293,7 +293,7 @@ public class TestBibliotheque {
                                 }
                                 cat = nouveau;
                                 trouve = true;
-                                System.out.println("Catégorie supprimée avec succes.");
+                                System.out.println("Catégorie supprimée avec succès.");
                                 break;
                             }
                         }

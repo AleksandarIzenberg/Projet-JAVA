@@ -86,9 +86,6 @@ public class Bibliothecaire {
         if (adresse.trim().isEmpty()) {
             System.out.println("Veuillez remplir ce champ");
             return false;
-//        } else if (!adresse.matches("[a-zA-ZÀ-ÿ\\s'\\-]+")) {
-//            System.out.println("L'adresse ne doit contenir que des lettres, espaces, tirets ou apostrophes");
-//            return false;
         } else {
             this.adresse = adresse;
             return true;

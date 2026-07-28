@@ -38,9 +38,6 @@ public class Ouvrages {
         if (titre.trim().isEmpty()) {
             System.out.println("Veuillez remplir ce champ");
             return false;
-//        } else if (!titre.matches("[a-zA-ZÀ-ÿ -]+")) {
-//            System.out.println("Ne mettez pas de chiffre dans ce champ");
-//            return false;
         } else {
             this.titre = titre;
             return true;

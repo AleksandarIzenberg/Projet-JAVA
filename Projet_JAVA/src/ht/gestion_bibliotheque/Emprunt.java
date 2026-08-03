@@ -82,9 +82,18 @@ public class Emprunt {
             return false;
         }
         boolean existe = false;
+
         for (int i = 0; i < TestBibliotheque.ouv.length; i++) {
-            if (TestBibliotheque.ouv[i] != null && TestBibliotheque.ouv[i].getISBN().equals(isbn)) {
+            if (TestBibliotheque.ouv[i] != null &&
+                    TestBibliotheque.ouv[i].getISBN().equals(isbn)) {
+
                 existe = true;
+
+                if (TestBibliotheque.ouv[i].getDisponible().equals("n")) {
+                    System.out.println("Cet ouvrage n'est pas disponible.");
+                    return false;
+                }
+
                 break;
             }
         }
@@ -92,6 +101,7 @@ public class Emprunt {
             System.out.println("Cet ouvrage n'existe pas");
             return false;
         }
+
         this.isbn = isbn;
         return true;
     }
